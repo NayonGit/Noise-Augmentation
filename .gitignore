@@ -1,3 +1,9 @@
-# Ignore reduced chest x-ray dataset
+# Datasets
 chest_xray_reduced/
+chest_xray/
+mri_brain/
+
+
+# Environment files
+env/
 
