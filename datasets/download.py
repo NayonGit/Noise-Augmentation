@@ -10,13 +10,10 @@ def download_dataset(url: str, fname: str):
         return
 
     os.makedirs(os.path.dirname(fname), exist_ok=True)
-    
     try:
         response = requests.get(url, stream=True, timeout=10)
         response.raise_for_status() # Check if the link is dead (404)
-        
         total_size = int(response.headers.get('content-length', 0))
-        
         with open(fname, 'wb') as file, tqdm(
             desc=f"Downloading {os.path.basename(fname)}",
             total=total_size,
@@ -29,10 +26,9 @@ def download_dataset(url: str, fname: str):
                 bar.update(size)
     except Exception as e:
         print(f"Error during download: {e}")
-        print("Check your internet connection or the validity of the Zenodo link.")
 
 def unzip_dataset(zip_path, extract_to):
-    """Exctract and clean the dataset folder."""
+    # Extract and clean the dataset folder.
     if not os.path.exists(zip_path):
         return
     print(f"Extraction to {extract_to}...")
